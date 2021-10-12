@@ -35,13 +35,13 @@ jobs:
       - name: run remote commands
         uses: fifsky/ssh-action@master
         with:
-          host: ${{ secrets.SERVER_IP }}
-          user: ${{ secrets.LOGIN }}
-          pass: ${{ secrets.PASSWORD }}
           command: |
             cd services/
             ll
             # sudo docker-compose up --build granica
+          host: ${{ secrets.SERVER_IP }}
+          user: ${{ secrets.LOGIN }}
+          pass: ${{ secrets.PASSWORD }}
           
       # Runs a single command using the runners shell
 #       - name: Run a one-line script
