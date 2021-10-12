@@ -36,9 +36,8 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd services/
-            ll
-            # sudo docker-compose up --build granica
+            cd /services
+            ls -a
           host: ${{ secrets.SERVER_IP }}
           user: ${{ secrets.LOGIN }}
           pass: ${{ secrets.PASSWORD }}
