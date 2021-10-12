@@ -26,11 +26,12 @@ jobs:
       - name: copy files
         uses: appleboy/scp-action@master
         with:
-          source: "cleaner.py"
-          target: /home/alexios/services/GranicaParser
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.LOGIN }}
           password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: "tests/cleaner.py"
+          target: /home/alexios/services/GranicaParser
 
       - name: run remote commands
         uses: fifsky/ssh-action@master
