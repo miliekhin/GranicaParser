@@ -26,7 +26,7 @@ jobs:
       - name: copy files
         uses: appleboy/scp-action@master
         with:
-          source: "GranicaParser/cleaner.py"
+          source: "cleaner.py"
           target: /home/alexios/services/GranicaParser
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.LOGIN }}
