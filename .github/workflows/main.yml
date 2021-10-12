@@ -26,7 +26,7 @@ jobs:
       - name: copy files
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: GranicaParser/
+          local: .
           remote: /home/alexios/services/GranicaParser
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.LOGIN }}
@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.PASSWORD }}
           command: |
             cd services/
-            sudo docker-compose up --build granica
+            # sudo docker-compose up --build granica
           
       # Runs a single command using the runners shell
 #       - name: Run a one-line script
