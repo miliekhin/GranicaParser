@@ -37,7 +37,7 @@ jobs:
         with:
           command: |
             cd services
-            sudo docker-compose up --build granica
+            sudo docker-compose up --build -d granica
           host: ${{ secrets.SERVER_IP }}
           user: ${{ secrets.LOGIN }}
           pass: ${{ secrets.PASSWORD }}
