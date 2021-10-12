@@ -26,7 +26,7 @@ jobs:
       - name: copy files
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: GranicaParser
+          local: GranicaParser/
           remote: /home/alexios/services/GranicaParser
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.LOGIN }}
