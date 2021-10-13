@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.LOGIN }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: ".,!.github/,!.gitignore,!README.md"
+          source: ".,!.github,!.git,!.gitignore,!README.md"
           target: /home/alexios/services/GranicaParser
 
       - name: run remote commands
