@@ -56,7 +56,8 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'tests':
         run_tests()
     else:
-        print(f'\n--------------------------------\nGranica parser launched!')
+        print('\n--------------------------------\nGranica parser launched.')
+        print('Waiting for new telegram messages...')
         client.start()
         client.run_until_disconnected()
 
