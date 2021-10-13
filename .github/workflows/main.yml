@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.LOGIN }}
           password: ${{ secrets.PASSWORD }}
           port: 22
-          source: "cleaner.py"
+          source: ".,!.github,!.gitignore"
           target: /home/alexios/services/GranicaParser
 
       - name: run remote commands
@@ -37,6 +37,7 @@ jobs:
         with:
           command: |
             cd services
+            ls -a
            # sudo docker-compose up --build -d granica
           host: ${{ secrets.SERVER_IP }}
           user: ${{ secrets.LOGIN }}
