@@ -47,13 +47,14 @@ class Cleaner:
         combs_vse = [''.join(s) for s in itertools.product(add_r_space(PREFIX), VSE, MIDDLE)]
         combs_dt = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TIME)]
         combs_km = [''.join(s) for s in itertools.product(add_r_space(DIGITS), KM)]
+        combs_mest = [''.join(s) for s in itertools.product(add_r_space(DIGITS), 'мест')]
         combs_td = [''.join(s) for s in itertools.product(add_r_space(TIME), DIGITS)]
         combs_prodv = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), DIGITS)]
         combs_prodv_na = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), add_r_space(('на',)), DIGITS)]
         combs_gruz = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TRUCKS)]
 
         self.combinations = tuple(combs + combs_vse + combs_td + combs_dt + combs_gruz + combs_km + combs_prodv +
-                                  combs_prodv_na) + AUX
+                                  combs_prodv_na + combs_mest) + AUX
 
     @staticmethod
     def clear_prodvin(msg):
@@ -62,9 +63,10 @@ class Cleaner:
         return ret
 
     @staticmethod
-    def clear_kilometers(msg):
+    def clear_other(msg):
         km = '|'.join(KM)
         ret = re.sub(fr'\d+ (?:{km})', '', msg).replace('  ', ' ')
+        ret = re.sub(fr'\d+ мест', '', ret).replace('  ', ' ')
         return ret
 
     @staticmethod
@@ -95,7 +97,7 @@ class Cleaner:
         # msg = self.clear_trucks(msg)
         msg = self.clear_prodvin(msg)
         msg = self.clear_times(msg)
-        msg = self.clear_kilometers(msg)
+        msg = self.clear_other(msg)
 
         for item in self.combinations:
             i = msg.find(item)

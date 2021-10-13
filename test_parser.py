@@ -406,9 +406,16 @@ def test_case_0055():
     assert result is None
 
 
+def test_case_0056():
+    msg = 'Ищу 1 место сегодня ночью для мужа с Мелового до Донецка или до Успенки. Пишите в лс.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
 def run_tests():
 
-    test_case_0055()
+    test_case_0056()
+    # test_case_0055()
     # test_case_0054()
     # test_case_0053()
     # test_case_0052()
