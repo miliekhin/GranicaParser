@@ -418,9 +418,16 @@ def test_case_0057():
     assertion(result, 'to_dnr', False)
 
 
+def test_case_0058():
+    msg = 'Новоазовск:ДНР -> РФ - 15 машинМного фур.'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False)
+
+
 def run_tests():
 
-    test_case_0057()
+    test_case_0058()
+    # test_case_0057()
     # test_case_0056()
     # test_case_0055()
     # test_case_0054()
