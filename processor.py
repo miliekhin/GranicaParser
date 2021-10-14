@@ -68,6 +68,8 @@ def cars_count_by_object(message, kpp, way):
                 return 66
             if any(w in message for w in ('заправк', 'луко', )):
                 return 55
+            if 'до поворот' in message:
+                return 22
 
     return None
 

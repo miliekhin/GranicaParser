@@ -412,9 +412,16 @@ def test_case_0056():
     assert result is None
 
 
+def test_case_0057():
+    msg = 'Новоазовск РФ-днр на машин до  поворота на границу'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', False)
+
+
 def run_tests():
 
-    test_case_0056()
+    test_case_0057()
+    # test_case_0056()
     # test_case_0055()
     # test_case_0054()
     # test_case_0053()
