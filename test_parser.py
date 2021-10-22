@@ -306,7 +306,7 @@ def test_case_0038():
 def test_case_0039():
     msg = 'Мариновка в РФ 23 до шлагбаума. Навес 5.'
     result = get_valid_data(msg)
-    assert result is None
+    assertion(result, 'to_rf', False)
 
 
 def test_case_0040():
@@ -436,9 +436,16 @@ def test_case_0060():
     assert result is None
 
 
+def test_case_0061():
+    msg = 'На Мариновке в РФ машин 50. Движение идёт, но очень медленно! Стоим 3 часа и ещё машин 15 спереди.'
+    result = get_valid_data(msg)
+    # assert result is None
+
+
 def run_tests():
 
-    test_case_0060()
+    test_case_0061()
+    # test_case_0060()
     # test_case_0059()
     # test_case_0058()
     # test_case_0057()

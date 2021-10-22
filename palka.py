@@ -6,7 +6,7 @@ PREFX_BEFORE = ('до ', 'перед ', 'под ', 'на ', )
 PALKA = ('шлакб', 'шлагб', 'палк', 'въезд')
 CARS_WORDS = ('машин', 'авто',)
 CARS_COUNT_WORDS = {'одна': 1, 'два ': 2, 'две ': 2, 'пара ': 2, 'пару ': 2, 'три ': 3, 'четыре': 4,
-                    'пять': 5, 'шесть': 6, 'семь': 7, 'восемь': 8, 'девять': 9, 'десять': 10, }
+                    'пять': 5, 'шесть': 6, 'семь': 7, 'восемь': 8, 'девять': 9, 'десять': 10, 'мало машин': 5}
 
 MINUSES = ('-', ' - ', '- ', ' -', )
 
@@ -91,9 +91,10 @@ def palka_detector(message):
     if any(c in message for c in palka_null):
         cars_count = 0
 
-    res = re.findall(r'палка \d+', message)
+    res = re.findall(r'(?:палка|шла[гк]баум) \d+', message)
     if len(res) == 1:
-        cars_count = int(res[0].replace('палка ', ''))
+        cars_count = re.search(r'\b\d+', res[0]).group(0)
+        # cars_count = int(res[0].replace('палка ', ''))
 
     if cars_count is None:
         na_palke = [''.join(s) for s in itertools.product(PREFX_BEFORE, PALKA)] + list(PALKA)

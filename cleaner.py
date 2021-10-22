@@ -68,6 +68,7 @@ class Cleaner:
         km = '|'.join(KM)
         ret = re.sub(fr'\d+ (?:{km})', '', msg).replace('  ', ' ')
         ret = re.sub(fr'\d+ мест', '', ret).replace('  ', ' ')
+        ret = re.sub(fr'(льгота|н[еи][йи]?тралка|навес) \d+', '', ret).replace('  ', ' ')
         return ret
 
     @staticmethod
@@ -80,12 +81,13 @@ class Cleaner:
     def clear_times(msg):
         times = '|'.join(TIME)
         msg = re.sub(fr'\d+ (?:{times})', '', msg).replace('  ', ' ')
-        ret = re.sub(fr'(?:{times}) \d+', '', msg).replace('  ', ' ')
-        return ret
+        msg = re.sub(fr'(?:{times}) \d+', '', msg).replace('  ', ' ')
+        msg = re.sub(fr'с \d+ - \d+', '', msg).replace('  ', ' ')
+        return msg
 
     @staticmethod
     def clear_rational_number(msg):
-        ret = re.sub(r'\d+[,.]\d+', '', msg).replace('  ', ' ')
+        ret = re.sub(r'\d+[,.:/]\d+', '', msg).replace('  ', ' ')
         return ret
 
     def clean(self, msg):
