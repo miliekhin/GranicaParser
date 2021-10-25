@@ -48,7 +48,7 @@ class Cleaner:
         combs_vse = [''.join(s) for s in itertools.product(add_r_space(PREFIX), VSE, MIDDLE)]
         combs_dt = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TIME)]
         combs_km = [''.join(s) for s in itertools.product(add_r_space(DIGITS), KM)]
-        combs_mest = [''.join(s) for s in itertools.product(add_r_space(DIGITS), 'мест')]
+        combs_mest = [''.join(s) for s in itertools.product(add_r_space(DIGITS), ('мест', ))]
         combs_td = [''.join(s) for s in itertools.product(add_r_space(TIME), DIGITS)]
         combs_prodv = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), DIGITS)]
         combs_prodv_na = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), add_r_space(('на',)), DIGITS)]

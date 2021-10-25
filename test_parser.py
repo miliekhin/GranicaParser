@@ -437,9 +437,9 @@ def test_case_0060():
 
 
 def test_case_0061():
-    msg = 'На Мариновке в РФ машин 50. Движение идёт, но очень медленно! Стоим 3 часа и ещё машин 15 спереди.'
+    msg = '8:10 Успенка из РФ в ДНР пару машин на таможне'
     result = get_valid_data(msg)
-    # assert result is None
+    assertion(result, 'to_dnr', False)
 
 
 def run_tests():
