@@ -132,7 +132,7 @@ def get_cars_count(message, kpp, way):
 def get_kpp(message):
     if any(w in message for w in ('успен', 'кург', 'матвее', )):
         return KPP_NAMES[0]
-    if any(w in message for w in ('новоа', 'новао', 'новоо', 'вознес', )):
+    if any(w in message for w in ('новоа', 'новао', 'новоо', 'новоз', 'вознес', )):
         return KPP_NAMES[2]
     if any(w in message for w in ('марин', 'куйб', )):
         return KPP_NAMES[1]

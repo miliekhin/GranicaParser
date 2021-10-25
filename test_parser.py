@@ -442,9 +442,16 @@ def test_case_0061():
     assertion(result, 'to_dnr', False)
 
 
+def test_case_0062():
+    msg = 'Новозовск 5 машин на палке в рф'
+    result = get_valid_data(msg)
+    # assertion(result, 'to_dnr', False)
+
+
 def run_tests():
 
-    test_case_0061()
+    test_case_0062()
+    # test_case_0061()
     # test_case_0060()
     # test_case_0059()
     # test_case_0058()
