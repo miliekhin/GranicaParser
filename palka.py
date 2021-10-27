@@ -10,7 +10,7 @@ CARS_COUNT_WORDS = {'одна': 1, 'два ': 2, 'две ': 2, 'пара ': 2, '
 
 MINUSES = ('-', ' - ', '- ', ' -', )
 
-PUSTO = ('никого', 'некого', 'ни кого', 'пусто', 'ноль', 'нуль', 'машин нет', 'свободно', )
+PUSTO = ('никого', 'некого', 'ни кого', 'пусто', 'ноль', 'нуль', 'машин нет', 'нет машин', 'свободно', )
 
 PUSTO_FAKE = ('ноль забит', 'ноль полный', )
 
@@ -23,9 +23,11 @@ PALKA_SUFFIX = ('е', 'ом', 'ой', 'а',)
 
 palka_word_null = [''.join(s) for s in itertools.product(add_r_space(PALKA_WORD), PUSTO)]
 palka_words = [''.join(s) for s in itertools.product(PALKA_WORD, PALKA_SUFFIX)]
+null_pered_palka = [''.join(s) for s in itertools.product(add_r_space(PUSTO), PREFX_BEFORE, palka_words)]
 palka_word_0 = [''.join(s) for s in itertools.product(add_r_space(PALKA_WORD), '0')]
 palka_words_0 = [''.join(s) for s in itertools.product(add_r_space(palka_words), '0')] + palka_word_0
-palka_null = [''.join(s) for s in itertools.product(add_r_space(palka_words), PUSTO)] + palka_word_null + palka_words_0
+palka_null = [''.join(s) for s in itertools.product(add_r_space(palka_words), PUSTO)]
+palka_combs = palka_null + palka_word_null + palka_words_0 + null_pered_palka
 
 
 def find_range_value(message):
@@ -88,7 +90,7 @@ def _find_cars_in_words(finded_cars_words_arr):
 def palka_detector(message):
     """Распознавание подстроки 'Перед палкой/шлагбаумом' """
     cars_count = None
-    if any(c in message for c in palka_null):
+    if any(c in message for c in palka_combs):
         cars_count = 0
 
     res = re.findall(r'(?:палка|шла[гк]баум) \d+', message)

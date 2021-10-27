@@ -443,9 +443,9 @@ def test_case_0061():
 
 
 def test_case_0062():
-    msg = 'Новозовск 5 машин на палке в рф'
+    msg = 'Из РФ в ДНР на Мариновке нет машин перед палкой, под навесом 5 машин.'
     result = get_valid_data(msg)
-    # assertion(result, 'to_dnr', False)
+    assertion(result, 'to_dnr', True)
 
 
 def run_tests():
