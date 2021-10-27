@@ -195,8 +195,8 @@ def get_valid_data(message):
     print('\n--------------------------------')
     print('Original message:', message)
     # low_message = message.lower().replace('c', 'с').replace('  ', ' ')
-    low_message = message.lower().replace('c', 'с')
-    low_message = cleaner.clear_rational_number(low_message)
+    msg_for_way_parser = message.lower().replace('c', 'с')
+    low_message = cleaner.clear_rational_number(msg_for_way_parser)
     low_message = word_num_separator(low_message)
     low_message = cleaner.clean(low_message)
     print('Processed message:', low_message)
@@ -209,7 +209,7 @@ def get_valid_data(message):
         return None
 
     print('CHECK get_way')
-    way = get_way(low_message)
+    way = get_way(msg_for_way_parser)
     print('RESULT:', way)
     if len(way) == 0:
         return None

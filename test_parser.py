@@ -448,6 +448,12 @@ def test_case_0062():
     assertion(result, 'to_dnr', True)
 
 
+def test_case_0062():
+    msg = 'Из 🇷🇺 на Новоазовск до лукоила'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', False)
+
+
 def run_tests():
 
     test_case_0062()
