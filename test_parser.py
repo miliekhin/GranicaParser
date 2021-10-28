@@ -460,9 +460,16 @@ def test_case_0063():
     assert result is None
 
 
+def test_case_0064():
+    msg = 'Проедешь,конечно. Быстрее чем через успенку в два раза.'
+    result = get_valid_data(msg)
+    # assert result is None
+
+
 def run_tests():
 
-    test_case_0063()
+    test_case_0064()
+    # test_case_0063()
     # test_case_0062()
     # test_case_0061()
     # test_case_0060()
