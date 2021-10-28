@@ -454,9 +454,16 @@ def test_case_0062():
     assertion(result, 'to_dnr', False)
 
 
+def test_case_0063():
+    msg = 'В РФ на Мариновке 43 автобуса'
+    result = get_valid_data(msg)
+    assert result is None
+
+
 def run_tests():
 
-    test_case_0062()
+    test_case_0063()
+    # test_case_0062()
     # test_case_0061()
     # test_case_0060()
     # test_case_0059()
@@ -518,9 +525,10 @@ def run_tests():
     # test_case_0002()
     # test_case_0001()
 
-    print('\n ***ALL TESTS FINISHED***')
+    print('\n *** ALL TESTS FINISHED ***')
 
     # test_case_0037()  # Много цифр
+
 
 """
 Проблемные:

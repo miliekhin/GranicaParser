@@ -20,7 +20,7 @@ AUX = (
     'один ряд', 'два ряда', '1 ряд', '2 ряда', '2 рчда', '3 ряда', '4 ряда', 'две границы', 'обе границы',
     'навес и ноль', 'две таможни', 'две полосы', 'три полосы', 'одна полоса', 'движение ноль', 'движения ноль',
     'был пустой', 'было пусто', 'движение 0', 'движения 0', 'две очереди', 'три очереди', 'одна очередь',
-    'много фур', 'пусто?', '0 забит',
+    'много фур', 'пусто?', '0 забит', 'одна за одной',
 )
 DIGITS = (
     'одна', 'одну', 'две', 'пару', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'сем', 'восемь', 'восем',
@@ -52,9 +52,9 @@ class Cleaner:
         combs_td = [''.join(s) for s in itertools.product(add_r_space(TIME), DIGITS)]
         combs_prodv = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), DIGITS)]
         combs_prodv_na = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), add_r_space(('на',)), DIGITS)]
-        combs_gruz = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TRUCKS)]
+        self.combs_gruz = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TRUCKS)]
 
-        self.combinations = tuple(combs + combs_vse + combs_td + combs_dt + combs_gruz + combs_km + combs_prodv +
+        self.combinations = tuple(combs + combs_vse + combs_td + combs_dt + combs_km + combs_prodv +
                                   combs_prodv_na + combs_mest) + AUX
 
     @staticmethod
@@ -67,14 +67,18 @@ class Cleaner:
     def clear_other(msg):
         km = '|'.join(KM)
         ret = re.sub(fr'\d+ (?:{km})', '', msg).replace('  ', ' ')
-        ret = re.sub(fr'\d+ мест', '', ret).replace('  ', ' ')
-        ret = re.sub(fr'(льгота|н[еи][йи]?тралка|навес) \d+', '', ret).replace('  ', ' ')
+        ret = re.sub(r'\d+ мест', '', ret).replace('  ', ' ')
+        ret = re.sub(r'\d+ автобус', '', ret).replace('  ', ' ')
+        ret = re.sub(r'(льгота|н[еи][йи]?тралка|навес) \d+', '', ret).replace('  ', ' ')
         return ret
 
-    @staticmethod
-    def clear_trucks(msg):
+    def clear_trucks(self, msg):
         trucks = '|'.join(TRUCKS)
         ret = re.sub(fr'\d+ (?:{trucks})', '', msg).replace('  ', ' ')
+        for item in self.combs_gruz:
+            i = ret.find(item)
+            if i != -1:
+                ret = ret.replace(item, '')
         return ret
 
     @staticmethod
