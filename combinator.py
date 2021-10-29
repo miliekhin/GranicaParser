@@ -39,7 +39,7 @@ def to_dnr2():
 def to_dnr():
     rf_dnr = [''.join(s) for s in itertools.product(add_r_space(RF), DNR)]
     rf_v_dnr = [''.join(s) for s in itertools.product(RF, combine_spaces(TO), DNR)]
-    rf_kpp = [''.join(s) for s in itertools.product(RF, combine_spaces(TO), KPP)]
+    from_rf_kpp = [''.join(s) for s in itertools.product(FROM + add_r_space(FROM), RF, combine_spaces(TO), KPP)]
     storonu_kpp = [''.join(s) for s in itertools.product(STORONU, KPP)]
     storonu_dnr = [''.join(s) for s in itertools.product(STORONU, DNR)]
     iz_rf = [''.join(s) for s in itertools.product(FROM + add_r_space(FROM), RF)]
@@ -51,7 +51,7 @@ def to_dnr():
     # print(storonu_dnr, '\n')
     # print(iz_rf, '\n')
     # print(v_dnr, '\n')
-    result = tuple(rf_dnr + rf_v_dnr + rf_kpp + storonu_kpp + iz_rf + v_dnr + storonu_dnr) + EXTRA_TO_DNR
+    result = tuple(rf_dnr + rf_v_dnr + from_rf_kpp + storonu_kpp + iz_rf + v_dnr + storonu_dnr) + EXTRA_TO_DNR
     # print(result)
     return result
 

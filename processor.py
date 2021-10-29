@@ -1,7 +1,15 @@
 import random
 import re
 
-from palka import palka_detector, get_cars_count_by_word, find_range_value, PUSTO, PUSTO_FAKE, NA_ZAEZD
+from palka import (
+    palka_detector,
+    get_cars_count_by_word,
+    find_range_value,
+    PUSTO,
+    PUSTO_FAKE,
+    NA_ZAEZD,
+    CARS_COUNT_WORDS
+)
 from cleaner import Cleaner
 from combinator import Combinator
 
@@ -15,11 +23,8 @@ SPAM = (
     'faberli', 'дпс', 'экипаж', 'пакет', 'мы', 'скажите', 'протяжка', 'за час', 'в час', 'ваша репутац', 'груз 200',
     'груз200', 'одесская', 'что происходит', 'такси', 'ребен', 'ребён', 'электричк', 'билет', 'паспорт', 'регистр',
     'иловайск', 'товар', 'личку', 'привез', 'как обстановка', 'какая обстановка', 'одни пишут', 'пропускная способность',
-    'образец', 'друзья пишите смс', 'Вчера ехал',
-)
-
-SPAM2 = (
-    'прошли', 'проехали', 'приеха', 'стоял', 'стою', 'стоим', 'за мной',
+    'образец', 'друзья пишите смс', 'вчера ехал', 'прошел границу', 'прошли границу', 'прошли за', 'проехали за',
+    'проехал за', 'сейчас стою', 'сейчас стоим',
 )
 
 KPP = ('успен', 'упенк', 'новоа', 'новао', 'новоо', 'марин', 'днр', 'рф', 'кург', 'вознес', 'вознис', 'куйб',)
@@ -87,8 +92,23 @@ def get_cars_type(message):
     return 0
 
 
+def parse_cars_by_words(message):
+    words = '|'.join([*CARS_COUNT_WORDS])
+    res = re.findall(fr'(?:{words}?\s?-?\s?)?легков\S+(?:\s?-?\s?{words})?', message)
+    if len(res) == 1:
+        res = re.findall(fr'{words}', res[0])
+        if len(res) > 1:
+            res = None
+        elif len(res) == 1:
+            res = CARS_COUNT_WORDS[res[0]]
+        else:
+            res = -1
+
+    return res
+
+
 def parse_cars(message):
-    res = re.findall(r'(?:\d+?\s?-?\s?)?легковы[хе](?:\s?-?\s?\d+)?', message)
+    res = re.findall(r'(?:\d+?\s?-?\s?)?легков\S+(?:\s?-?\s?\d+)?', message)
     if len(res) == 1:
         res = re.findall(r'\d+', res[0])
         if len(res) == 1:
@@ -96,7 +116,7 @@ def parse_cars(message):
         elif len(res) > 1:
             res = None
         else:
-            res = -1
+            res = parse_cars_by_words(message)
     elif len(res) > 1:
         res = None
     else:

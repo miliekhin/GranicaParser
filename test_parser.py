@@ -138,7 +138,8 @@ def test_case_0011():
 def test_case_0012():
     msg = 'Новоазовск ДНР-РФ сразу на въезд. ДНР прошли за 10 мин. На нейтралке 4 машины'
     result = get_valid_data(msg)
-    assertion(result, 'to_rf', True)
+    # assertion(result, 'to_rf', True)
+    assert result is None
 
 
 def test_case_0013():
@@ -461,9 +462,9 @@ def test_case_0063():
 
 
 def test_case_0064():
-    msg = 'Проедешь,конечно. Быстрее чем через успенку в два раза.'
+    msg = 'В рф на Новоазовске легковых одна фур штук 30-40'
     result = get_valid_data(msg)
-    # assert result is None
+    assertion(result, 'to_rf', False)
 
 
 def run_tests():
@@ -532,6 +533,7 @@ def run_tests():
     # test_case_0002()
     # test_case_0001()
 
+    ...
     print('\n *** ALL TESTS FINISHED ***')
 
     # test_case_0037()  # Много цифр
