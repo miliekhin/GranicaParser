@@ -467,9 +467,16 @@ def test_case_0064():
     assertion(result, 'to_rf', False)
 
 
+def test_case_0065():
+    msg = 'Успенка из РФ в ДНР очередь легковые от заправки'
+    result = get_valid_data(msg)
+    # assertion(result, 'to_rf', False)
+
+
 def run_tests():
 
-    test_case_0064()
+    test_case_0065()
+    # test_case_0064()
     # test_case_0063()
     # test_case_0062()
     # test_case_0061()
