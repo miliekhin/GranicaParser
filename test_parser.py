@@ -468,7 +468,7 @@ def test_case_0064():
 
 
 def test_case_0065():
-    msg = 'Успенка из РФ в ДНР очередь легковые от заправки'
+    msg = 'Мариновка из РФ в ДНР в серой зоне 18 машин перед шлагбаумом.'
     result = get_valid_data(msg)
     # assertion(result, 'to_rf', False)
 

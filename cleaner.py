@@ -69,6 +69,7 @@ class Cleaner:
         ret = re.sub(fr'\d+ (?:{km})', '', msg).replace('  ', ' ')
         ret = re.sub(r'\d+ мест', '', ret).replace('  ', ' ')
         ret = re.sub(r'\d+ автобус', '', ret).replace('  ', ' ')
+        ret = re.sub(r'в серой зоне \d+', '', ret).replace('  ', ' ')
         ret = re.sub(r'(льгота|н[еи][йи]?тралка|навес) \d+', '', ret).replace('  ', ' ')
         return ret
 
