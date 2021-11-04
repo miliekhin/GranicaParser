@@ -38,6 +38,10 @@ KM = (
 PRODVIN = (
     'продвинулись', 'продвинулось', 'продвинулась',
 )
+RE_OTHER = (
+    r'\d+ мест', r'\d+ автобус', r'\d+ под навесом$', r'навес(ом)? \d+$', r'в серой зоне \d+',
+    r'(льгота|н[еи][йи]?тралка|навес) \d+',
+)
 
 
 class Cleaner:
@@ -57,20 +61,17 @@ class Cleaner:
         self.combinations = tuple(combs + combs_vse + combs_td + combs_dt + combs_km + combs_prodv +
                                   combs_prodv_na + combs_mest) + AUX
 
+        km = '|'.join(KM)
+        self.re_other = RE_OTHER + (fr'\d+ (?:{km})', )
+
     @staticmethod
     def clear_prodvin(msg):
         prodv = '|'.join((tuple([''.join(s) for s in itertools.product(add_r_space(PRODVIN), ('на', 'в'))]) + PRODVIN))
         ret = re.sub(fr'(?:{prodv}) \d+', '', msg).replace('  ', ' ')
         return ret
 
-    @staticmethod
-    def clear_other(msg):
-        km = '|'.join(KM)
-        ret = re.sub(fr'\d+ (?:{km})', '', msg).replace('  ', ' ')
-        ret = re.sub(r'\d+ мест', '', ret).replace('  ', ' ')
-        ret = re.sub(r'\d+ автобус', '', ret).replace('  ', ' ')
-        ret = re.sub(r'в серой зоне \d+', '', ret).replace('  ', ' ')
-        ret = re.sub(r'(льгота|н[еи][йи]?тралка|навес) \d+', '', ret).replace('  ', ' ')
+    def clear_other(self, msg):
+        ret = re.sub('|'.join(self.re_other), '', msg).replace('  ', ' ')
         return ret
 
     def clear_trucks(self, msg):
