@@ -479,9 +479,16 @@ def test_case_0066():
     assertion(result, 'to_rf', True)
 
 
+def test_case_0067():
+    msg = 'Успенка из РФ. 35 мин 2 таможни'
+    result = get_valid_data(msg)
+    # assertion(result, 'to_rf', True)
+
+
 def run_tests():
 
-    test_case_0066()
+    test_case_0067()
+    # test_case_0066()
     # test_case_0065()
     # test_case_0064()
     # test_case_0063()
