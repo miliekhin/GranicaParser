@@ -492,6 +492,18 @@ def test_case_0068():
 
 
 def test_case_0069():
+    msg = 'Мариновка из ДНР в РФ 4 машины. В нейтралке 2'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False)
+
+
+def test_case_0070():
+    msg = 'Успенка 25+ между границами'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0071():
     msg = 'Из Куйбышево в ДНР 4 легковые, 2 фуры, подтянулся автобус'
     result = get_valid_data(msg)
     # assertion(result, 'to_rf', True)
@@ -499,7 +511,9 @@ def test_case_0069():
 
 def run_tests():
 
-    test_case_0069()
+    test_case_0071()
+    # test_case_0070()
+    # test_case_0069()
     # test_case_0068()
     # test_case_0067()
     # test_case_0066()
