@@ -482,12 +482,26 @@ def test_case_0066():
 def test_case_0067():
     msg = 'Успенка из РФ. 35 мин 2 таможни'
     result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0068():
+    msg = 'Ноль на Новоазовск забит в сторону Рф'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0069():
+    msg = 'Из Куйбышево в ДНР 4 легковые, 2 фуры, подтянулся автобус'
+    result = get_valid_data(msg)
     # assertion(result, 'to_rf', True)
 
 
 def run_tests():
 
-    test_case_0067()
+    test_case_0069()
+    # test_case_0068()
+    # test_case_0067()
     # test_case_0066()
     # test_case_0065()
     # test_case_0064()
