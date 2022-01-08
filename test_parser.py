@@ -612,9 +612,16 @@ def test_case_0087():
     assert result is None
 
 
+def test_case_0088():
+    msg = 'Мариновка в РФ. Движемся по 5 авто за пол часа. Очередь начинается дальше конца спуска'
+    result = get_valid_data(msg)
+    # assert result is None
+
+
 def run_tests():
 
-    test_case_0087()
+    test_case_0088()
+    # test_case_0087()
     # test_case_0086()
     # test_case_0085()
     # test_case_0084()
