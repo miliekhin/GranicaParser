@@ -504,14 +504,133 @@ def test_case_0070():
 
 
 def test_case_0071():
-    msg = 'Из Куйбышево в ДНР 4 легковые, 2 фуры, подтянулся автобус'
+    msg = 'Да потому, что еще 2 месяца назад на новоазовск все бездумно ломанулись и очереди ' \
+          'были больше, чем на успенке.'
     result = get_valid_data(msg)
-    # assertion(result, 'to_rf', True)
+    assert result is None
+
+
+def test_case_0072():
+    msg = 'Успенка-Донецк...скользко...40-60..км'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0073():
+    msg = 'На мариновка сразу на заезд,но серая зона забита,снег не чищен,никто не может проехать,' \
+          'Все стоят в одной очереди и фуры и автобусы,и машины.Говорят,' \
+          'что автобусы впереди с 12 дня стоят,и до сих пор там.'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', True, 0)
+
+
+def test_case_0074():
+    msg = "В сторону Мариновки поехала снегоуборочная машина, а инвалиды', рожающие', нетерпеливые сделали 2 ряд."
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0075():
+    msg = 'Приехали на успенку в 1:50 (стали на гостинице) сейчас только прошли рф, стоим метров 30 от Дьюти фри'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0076():
+    msg = 'А вообще, /оффтоп/, на Успенку я забил ездить уже 2 года как. ' \
+          'На других КПВВ тоже не сахар, но Успенка ВСЕГДА самая медленная таможня.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0077():
+    msg = 'РФ в ДНР На успенке все так же до поворота... Около 17 машин. Пока стоим. Впускают фуры'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', False, 0)
+
+
+def test_case_0078():
+    msg = 'Отвечаю как допога с Новоазовска в Донецк, первые 30 км пути гололед частично, не разгоняйтесь, ' \
+          'затем дорога почти чистая и посыпанная, за Старобешево до Донецка опять ' \
+          'лед, при мне с кювета машину доставали, так что осторожно'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0079():
+    msg = 'Заберу с Успенки 2-3 человека. Пустой багажник. В сторону Енакиево.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0080():
+    msg = 'На трассе Успенка- Донецк дтп ,затор на трассе,можно объехать .За заправкой в Кутейников ' \
+          'уходите налево через Комсомольское,Старобешево на Донецк но скользкая,будьте внимательней'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0081():
+    msg = 'Стоим с 16:00 на Матвеев Кургане, от заправки проехали метров 300'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0082():
+    msg = 'Из РФ в ДНР проехал по Успенке за 35-40 минут'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0083():
+    msg = 'Успенка 3 машины на въезд в РФ, фур до фига, ноль забит'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_0084():
+    msg = 'Успенка в РФ, пеших много, человек 30-40, ждем'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0085():
+    msg = 'На успенке очередь грузовых 2-3 км'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0086():
+    msg = 'Успенка из РФ в ДНР на палке 12 машин , под навесом забито машин 40 , грузовиков немеренно'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', False, 0)
+
+
+def test_case_0087():
+    msg = 'Люди, нужна помощь! Кто может забрать 2 маленькие посылочки из магазина "Пятёрочка" в с. Куйбышево'
+    result = get_valid_data(msg)
+    assert result is None
 
 
 def run_tests():
 
-    test_case_0071()
+    test_case_0087()
+    # test_case_0086()
+    # test_case_0085()
+    # test_case_0084()
+    # test_case_0083()
+    # test_case_0082()
+    # test_case_0081()
+    # test_case_0080()
+    # test_case_0079()
+    # test_case_0078()
+    # test_case_0077()
+    # test_case_0076()
+    # test_case_0075()
+    # test_case_0074()
+    # test_case_0073()
+    # test_case_0072()
+    # test_case_0071()
     # test_case_0070()
     # test_case_0069()
     # test_case_0068()
@@ -597,6 +716,12 @@ def run_tests():
 Инфы нет, но одна цифра
 
  7	0	Мариновка из рф в днр очень медлено, всего 5 машин час стоим смена дыбилов !
+ 
+ 
+Не распознается какая цифра принадлежит к легковые:
+ 
+ 'Из Куйбышево в ДНР 4 легковые, 2 фуры, подтянулся автобус'
+
 
  
 """
