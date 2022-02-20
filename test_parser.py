@@ -615,12 +615,54 @@ def test_case_0087():
 def test_case_0088():
     msg = 'Мариновка в РФ. Движемся по 5 авто за пол часа. Очередь начинается дальше конца спуска'
     result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0089():
+    msg = 'Все равно не пускают, военнообязанных, людей пускают из РФ в ДНР по 10-20 человек, Успенка'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0090():
+    msg = 'Папа ехал в сторону успенки, вот сейчас (ему 59) его пропустили через посты, но мужчин призывного разворачивают. Что на самой таможне-неизвестно.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0091():
+    msg = 'Новоазовск из РФ пусто. Из ДНР на палке пусто, на нейтралке около 10 легковых'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', True, 0)
+
+
+def test_case_0092():
+    msg = '... мужчин не выпускают из ДНР в РФ и обратно на Успенке , 16 - 65 лет . Или уже пропускают ?'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0093():
+    msg = 'успенка Подъехали были 13е , через 2 мин запустили 10 машин...'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0094():
+    msg = ''
+    result = get_valid_data(msg)
     # assert result is None
 
 
 def run_tests():
 
-    test_case_0088()
+    test_case_0094()
+    # test_case_0093()
+    # test_case_0092()
+    # test_case_0091()
+    # test_case_0090()
+    # test_case_0089()
+    # test_case_0088()
     # test_case_0087()
     # test_case_0086()
     # test_case_0085()
