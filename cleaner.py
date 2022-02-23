@@ -43,11 +43,14 @@ PRODVIN = (
     'продвинулись', 'продвинулось', 'продвинулась', 'метров',
 )
 RE_OTHER = (
-    r'\d+ мест', r'\d+ автобус', r'\d+ под навесом$', r'навес(ом)? \d+$', r'в (серой зоне|н[еи][йи]?тралке) \d+',
+    r'\d+ под навесом$', r'навес(ом)? \d+$', r'в (серой зоне|н[еи][йи]?тралке) \d+', r'семь[я|ё|е]',
     r'(льгота|н[еи][йи]?тралка|навес) \d+', r'ноль.+забит', r'человек \d+ - \d+', r'движемся по (?:\d+ - \d+|\d+)',
-    r'(?:\d+\s?-?\s?\d+)\s(челов|прошл|лет)', r'\d+\s?(девоч|детей)', r'(мне|ему)\s?\d+\s?[лет]?', r'\d+\s?(лет|год)'
+    r'(?:\d+\s?-?\s?\d+)\s(челов|прошл|лет)', r'\d+\s?(девоч|детей|женщин|муж)', r'(мне|ему)\s?\d+\s?[лет]?',
     r'мужчин[ы]? до\s?\d+', r'нейтралк(а|е) (около|до)\s?\d+', r'был[о|и]\s?\d+',
-    r'запустили\s?(\d+|\d+ - \d+)\s?машин',
+    r'запустили\s?(\d+|\d+ - \d+)\s?машин', r'\d+\s?(лет|год|автобус|мест|сторон)',
+)
+DIFF = (
+    'мест', 'раз', 'девоч', 'детей', 'женщин', 'муж', 'ребен', 'ребён'
 )
 
 
@@ -59,7 +62,7 @@ class Cleaner:
         combs_vse = [''.join(s) for s in itertools.product(add_r_space(PREFIX), VSE, MIDDLE)]
         combs_dt = [''.join(s) for s in itertools.product(add_r_space(DIGITS), TIME)]
         combs_km = [''.join(s) for s in itertools.product(add_r_space(DIGITS), KM)]
-        combs_mest = [''.join(s) for s in itertools.product(add_r_space(DIGITS), ('мест', 'раз', ))]
+        combs_diff = [''.join(s) for s in itertools.product(add_r_space(DIGITS), DIFF)]
         combs_td = [''.join(s) for s in itertools.product(add_r_space(TIME), DIGITS)]
         combs_prodv = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), DIGITS)]
         combs_prodv_na = [''.join(s) for s in itertools.product(add_r_space(PRODVIN), add_r_space(('на',)), DIGITS)]
@@ -68,7 +71,7 @@ class Cleaner:
         combs_trucks_many = [''.join(s) for s in itertools.product(add_r_space(TRUCKS), MANY)]
 
         self.combinations = tuple(combs + combs_vse + combs_td + combs_dt + combs_km + combs_prodv +
-                                  combs_prodv_na + combs_mest + combs_many_trucks + combs_trucks_many) + AUX
+                                  combs_prodv_na + combs_diff + combs_many_trucks + combs_trucks_many) + AUX
 
         km = '|'.join(KM)
         self.re_other = RE_OTHER + (fr'(?:\d+ - \d+|\d+) (?:{km})', )
