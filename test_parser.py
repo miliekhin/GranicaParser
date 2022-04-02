@@ -649,7 +649,7 @@ def test_case_0093():
 
 
 def test_case_0094():
-    msg = 'Успенка ДНР ➡️ РФ 10 машин перед шлагбаумом.'
+    msg = 'Успенка из РФ в ДНР.Запустили сразу, очередь в 2 ряда по 10-13 машин.'
     result = get_valid_data(msg)
     # assert result is None
 
