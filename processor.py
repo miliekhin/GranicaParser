@@ -12,6 +12,7 @@ from palka import (
 )
 from cleaner import Cleaner
 from combinator import Combinator
+from combinator import KPP as comb_KPP
 
 cleaner = Cleaner()
 comb = Combinator()
@@ -195,6 +196,12 @@ def get_kpp(message):
 
 def get_way(message):
     way = ''
+    words = '|'.join([*comb_KPP])
+    res = re.findall(fr'{words}', message)
+    if len(res) > 1:
+        print('Many KPP names in message')
+        return way
+
     if any(c in message for c in comb.TO_DNR_KPPS):
         way = 'to_dnr'
     elif any(c in message for c in comb.TO_RF_KPPS):

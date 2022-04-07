@@ -649,14 +649,21 @@ def test_case_0093():
 
 
 def test_case_0094():
-    msg = 'Успенка из РФ в ДНР.Запустили сразу, очередь в 2 ряда по 10-13 машин.'
+    msg = 'на Новоазовске 70 машин было 1,5 часа назад, большинство из Мариуполя, мчсники посоветовали на Успенку или Мариновку ехать, т.к. их долго проверяют'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0095():
+    msg = ''
     result = get_valid_data(msg)
     # assert result is None
 
 
 def run_tests():
 
-    test_case_0094()
+    test_case_0095()
+    # test_case_0094()
     # test_case_0093()
     # test_case_0092()
     # test_case_0091()
