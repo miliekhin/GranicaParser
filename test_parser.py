@@ -649,14 +649,24 @@ def test_case_0093():
 
 
 def test_case_0094():
-    # msg = 'на Новоазовске 70 машин было 1,5 часа назад, большинство из Мариуполя, мчсники посоветовали на Успенку или Мариновку ехать, т.к. их долго проверяют'
-    # msg = 'На Успенке в 8-30 было 45 авто. Очередь почти не продвигается уже вот как 3 часа.'
     msg = 'Успенка из РФ в ДНР.Запустили сразу, очередь в 2 ряда по 10-13 машин.'
+    result = get_valid_data(msg)
+    assertion(result, 'to_dnr', True, 0)
+
+
+def test_case_0095():
+    msg = 'на Новоазовске 70 машин было 1,5 часа назад, большинство из Мариуполя, мчсники посоветовали на Успенку или Мариновку ехать, т.к. их долго проверяют'
     result = get_valid_data(msg)
     assert result is None
 
 
-def test_case_0095():
+def test_case_0096():
+    msg = 'На Успенке в 8-30 было 45 авто. Очередь почти не продвигается уже вот как 3 часа.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0097():
     msg = ''
     result = get_valid_data(msg)
     # assert result is None
@@ -664,7 +674,9 @@ def test_case_0095():
 
 def run_tests():
 
-    test_case_0095()
+    test_case_0097()
+    # test_case_0096()
+    # test_case_0095()
     # test_case_0094()
     # test_case_0093()
     # test_case_0092()
