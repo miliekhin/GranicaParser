@@ -667,6 +667,18 @@ def test_case_0096():
 
 
 def test_case_0097():
+    msg = 'На успенке пишут 70-60машин'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_0098():
+    msg = 'Одна мариновка что ли работает??)))) Остальные спят? ....'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0099():
     msg = ''
     result = get_valid_data(msg)
     # assert result is None
@@ -674,7 +686,9 @@ def test_case_0097():
 
 def run_tests():
 
-    test_case_0097()
+    test_case_0099()
+    # test_case_0098()
+    # test_case_0097()
     # test_case_0096()
     # test_case_0095()
     # test_case_0094()

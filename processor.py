@@ -230,9 +230,10 @@ def is_message_ready_to_parse(message):
     if len(message) < 5:
         print('Too short message.')
         return False
-    if any(c in message for c in SPAM):
-        print('Spam detected.')
-        return False
+    for c in SPAM:
+        if c in message:
+            print(f'Spam detected: {c}')
+            return False
     if not any(c in message for c in KPP):
         print('KPP is not present')
         return False
@@ -257,6 +258,10 @@ def get_valid_data(message):
     print('Original message:', message)
     # low_message = message.lower().replace('c', 'с').replace('  ', ' ')
     msg_for_way_parser = message.lower().replace('c', 'с')
+
+    if message.count('?') > 1:
+        print('Many question marks found.')
+        return None
 
     if any(c in message for c in PRE_SPAM):
         print('Prespam detected.')

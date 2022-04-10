@@ -38,12 +38,16 @@ def find_range_value(message):
         digit_low = int(arr_digits[0])
         digit_high = int(arr_digits[1])
 
-        if digit_low < digit_high:
-            i1 = message.find(arr_digits[0])
-            i2 = message.find(arr_digits[1])
-            txt_between_digits = message[i1 + len(arr_digits[0]): i2]
-            if txt_between_digits in MINUSES:
-                cars = digit_low + round((digit_high - digit_low) / 2)
+        i1 = message.find(arr_digits[0])
+        i2 = message.find(arr_digits[1])
+        txt_between_digits = message[i1 + len(arr_digits[0]): i2]
+        if txt_between_digits in MINUSES:
+            average = abs(round((digit_high - digit_low) / 2))
+            if digit_low < digit_high:
+                cars = digit_low + average
+            else:
+                cars = digit_high + average
+
     return cars
 
 
