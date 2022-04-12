@@ -106,8 +106,8 @@ class Cleaner:
 
     @staticmethod
     def clear_rational_number(msg):
-        msg = re.sub(r'\d+/', '', msg).replace('  ', ' ')
-        ret = re.sub(r'\d+[,.:/]\d+', '', msg).replace('  ', ' ')
+        msg = re.sub(r'\d+[,.:/]\d+', '', msg).replace('  ', ' ')
+        ret = re.sub(r'\d+/', '', msg).replace('  ', ' ')
         return ret
 
     def clean(self, msg):

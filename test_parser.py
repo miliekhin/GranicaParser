@@ -679,7 +679,7 @@ def test_case_0098():
 
 
 def test_case_0099():
-    msg = ''
+    msg = 'На Успенке ЦРБ работает 24/7'
     result = get_valid_data(msg)
     # assert result is None
 
