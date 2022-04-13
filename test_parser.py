@@ -681,12 +681,26 @@ def test_case_0098():
 def test_case_0099():
     msg = 'На Успенке ЦРБ работает 24/7'
     result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0100():
+    msg = 'Успенка в РФ машин 40+, пеших 100+'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_0101():
+    msg = ''
+    result = get_valid_data(msg)
     # assert result is None
 
 
 def run_tests():
 
-    test_case_0099()
+    test_case_0101()
+    # test_case_0100()
+    # test_case_0099()
     # test_case_0098()
     # test_case_0097()
     # test_case_0096()
