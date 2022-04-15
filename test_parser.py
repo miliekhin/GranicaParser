@@ -691,6 +691,12 @@ def test_case_0100():
 
 
 def test_case_0101():
+    msg = 'Успенка стоит. На пешем переходе человек 200.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0102():
     msg = ''
     result = get_valid_data(msg)
     # assert result is None
@@ -698,7 +704,8 @@ def test_case_0101():
 
 def run_tests():
 
-    test_case_0101()
+    test_case_0102()
+    # test_case_0101()
     # test_case_0100()
     # test_case_0099()
     # test_case_0098()
