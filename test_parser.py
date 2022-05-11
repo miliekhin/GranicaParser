@@ -697,6 +697,12 @@ def test_case_0101():
 
 
 def test_case_0102():
+    msg = 'Успенка в РФ больше 2-х часов не двигается'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0103():
     msg = ''
     result = get_valid_data(msg)
     # assert result is None
@@ -704,7 +710,8 @@ def test_case_0102():
 
 def run_tests():
 
-    test_case_0102()
+    test_case_0103()
+    # test_case_0102()
     # test_case_0101()
     # test_case_0100()
     # test_case_0099()
