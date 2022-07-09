@@ -246,7 +246,7 @@ def is_message_ready_to_parse(message):
 
 
 def word_num_separator(msg):
-    """Разделение слитых слов и цифр"""
+    """Разделение слитых слов и цифр, и удаление символов"""
     res = []
     for w in msg.split():
         sep = re.findall(r'[а-яё\-]+|\d+', w)
@@ -269,7 +269,8 @@ def get_valid_data(message):
         print('Prespam detected.')
         return None
 
-    low_message = cleaner.clear_rational_number(msg_for_way_parser)
+    low_message = cleaner.pre_cleaner(msg_for_way_parser)
+    low_message = cleaner.clear_rational_number(low_message)
     low_message = word_num_separator(low_message)
     low_message = cleaner.clean(low_message)
     print('Processed message:', low_message)

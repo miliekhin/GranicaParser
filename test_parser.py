@@ -703,6 +703,66 @@ def test_case_0102():
 
 
 def test_case_0103():
+    msg = 'На успенке нейтраль также с забором, и только перед шлагбаумом днр есть 1м. пустоты. НО, да, Вы правы..Извините.'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0104():
+    msg = 'На Успенке из ДНР за поворотом ещё 5 машин'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0105():
+    msg = 'Успенка из РФ в днр машин 61 сразу пустили'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0106():
+    msg = 'Новоазовск! Из ДНР в РФ, нейтралка забита, 80% Укр номера!'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0107():
+    msg = 'Успенка из ДНР в РФ 🖐️💥 режим работы РФ таможни за 15 минут пропускают 2 авто .По солнцу по жар'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0108():
+    msg = 'Успенка пеших нет, машин очередь 50+, за пешеходный ГАИ делает атата'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_0109():
+    msg = 'Успенка в РФ пеших чел 200, легковых почти до заправки'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_0110():
+    msg = 'Стоим на Успенке с 6:37, на 200 метров продвинулись, очередь просто трэш, грузовики по ходу быстрее двинуться, чем легковые'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0111():
+    msg = 'На Новоазовске есть пешеходная очередь?'
+    result = get_valid_data(msg)
+    assert result is None
+
+
+def test_case_0112():
+    msg = 'Успенка КПП 79 машин, 100 пешими.'
+    result = get_valid_data(msg)
+    assertion(result, 'to_rf', False, 0)
+
+
+def test_case_01111():
     msg = ''
     result = get_valid_data(msg)
     # assert result is None
@@ -710,7 +770,17 @@ def test_case_0103():
 
 def run_tests():
 
-    test_case_0103()
+    test_case_01111()
+    # test_case_0112()
+    # test_case_0111()
+    # test_case_0110()
+    # test_case_0109()
+    # test_case_0108()
+    # test_case_0107()
+    # test_case_0106()
+    # test_case_0105()
+    # test_case_0104()
+    # test_case_0103()
     # test_case_0102()
     # test_case_0101()
     # test_case_0100()
